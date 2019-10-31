@@ -2,7 +2,7 @@ let leftscore = 0;
 let rightscore = 0;
 
 function setup() {
-    createCanvas(600, 400);
+    createCanvas(windowWidth, windowHeight);
     ball = new Ball();
     left = new Box(true);
     right = new Box(false);

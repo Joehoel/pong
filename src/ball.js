@@ -54,6 +54,7 @@ class Ball {
             this.y + this.r > p.y - p.height / 2 &&
             this.x - this.r < p.x + p.width / 2
         ) {
+            this.xspeed *= this.acc;
             if (this.x > p.x) {
                 let diff = this.y - (p.y - p.height / 2);
                 console.log(diff);
@@ -64,7 +65,7 @@ class Ball {
                 this.x = p.x + p.width / 2 + this.r;
                 
             }
-            this.xspeed *= this.acc;
+            
         }
     }
     checkRight(p) {
@@ -73,6 +74,7 @@ class Ball {
             this.y + this.r > p.y - p.height / 2 &&
             this.x + this.r > p.x - p.width / 2
         ) {
+            this.xspeed *= this.acc;
             if (this.x < p.x) {
                 let diff = this.y - (p.y - p.height / 2);
                 let angle = map(diff, 0, p.height, radians(225), radians(135));
@@ -80,7 +82,7 @@ class Ball {
                 this.yspeed = 5 * sin(angle);
                 this.x = p.x - p.width / 2 - this.r 
             }
-            this.xspeed *= this.acc;
+            
         }
     }
 }

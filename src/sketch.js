@@ -16,9 +16,9 @@ function draw() {
     ball.checkLeft(left);
     
     if (ball.checkRight(right)) {
-       ball.accelerate; 
+       ball.accelerate(); 
         } else if (ball.checkLeft(left)) {
-        ball.accelerate;
+        ball.accelerate();
         }
 
     left.show();

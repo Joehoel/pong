@@ -64,10 +64,10 @@ class Ball {
                 console.log(diff);
                 let rad = radians(45);
                 let angle = map(diff, 0, p.height, -rad, rad);
-                this.xspeed = 5 * cos(angle) * this.acc;
-                this.yspeed = 5 * sin(angle) * this.acc;
+                this.xspeed = 5 * cos(angle);
+                this.yspeed = 5 * sin(angle);
                 this.x = p.x + p.width / 2 + this.r;
-                
+                return true;
             }
             
         }
@@ -85,6 +85,7 @@ class Ball {
                 this.xspeed = 5 * cos(angle) * this.acc;
                 this.yspeed = 5 * sin(angle) * this.acc;
                 this.x = p.x - p.width / 2 - this.r 
+                rerturn true;
             }
             
         }

@@ -6,6 +6,7 @@ class Ball {
         this.xspeed = 0;
         this.yspeed = 0;
         this.reset();
+        this.acc = 1.5;
     }
 
     show() {
@@ -61,7 +62,7 @@ class Ball {
                 this.xspeed = 5 * cos(angle);
                 this.yspeed = 5 * sin(angle);
                 this.x = p.x + p.width / 2 + this.r;
-                this.xpeed *= 1.1;
+                this.xpeed *= this.acc;
             }
         }
     }
@@ -77,7 +78,7 @@ class Ball {
                 this.xspeed = 5 * cos(angle);
                 this.yspeed = 5 * sin(angle);
                 this.x = p.x - p.width / 2 - this.r;
-                this.xspeed *= 1.1;
+                this.xspeed *= this.acc;
             }
         }
     }

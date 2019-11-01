@@ -62,7 +62,7 @@ class Ball {
                 this.xspeed = 5 * cos(angle);
                 this.yspeed = 5 * sin(angle);
                 this.x = p.x + p.width / 2 + this.r;
-                this.xpeed *= this.acc;
+                this.xspeed *= this.acc;
             }
         }
     }

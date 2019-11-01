@@ -62,8 +62,9 @@ class Ball {
                 this.xspeed = 5 * cos(angle);
                 this.yspeed = 5 * sin(angle);
                 this.x = p.x + p.width / 2 + this.r;
-                this.xspeed *= this.acc;
+                
             }
+            this.xspeed *= this.acc;
         }
     }
     checkRight(p) {
@@ -77,9 +78,9 @@ class Ball {
                 let angle = map(diff, 0, p.height, radians(225), radians(135));
                 this.xspeed = 5 * cos(angle);
                 this.yspeed = 5 * sin(angle);
-                this.x = p.x - p.width / 2 - this.r;
-                this.xspeed *= this.acc;
+                this.x = p.x - p.width / 2 - this.r 
             }
+            this.xspeed *= this.acc;
         }
     }
 }

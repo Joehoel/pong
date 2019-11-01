@@ -14,6 +14,12 @@ function draw() {
 
     ball.checkRight(right);
     ball.checkLeft(left);
+    
+    if (ball.checkRight(right)) {
+       ball.accelerate; 
+        } else if (ball.checkLeft(left)) {
+        ball.accelerate;
+        }
 
     left.show();
     right.show();

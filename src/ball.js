@@ -58,8 +58,8 @@ class Ball {
                 console.log(diff);
                 let rad = radians(45);
                 let angle = map(diff, 0, p.height, -rad, rad);
-                this.xspeed = 5 * cos(angle);
-                this.yspeed = 5 * sin(angle);
+                this.xspeed = 7 * cos(angle);
+                this.yspeed = 7 * sin(angle);
                 this.x = p.x + p.width / 2 + this.r;
             }
         }
@@ -73,8 +73,8 @@ class Ball {
             if (this.x < p.x) {
                 let diff = this.y - (p.y - p.height / 2);
                 let angle = map(diff, 0, p.height, radians(225), radians(135));
-                this.xspeed = 5 * cos(angle);
-                this.yspeed = 5 * sin(angle);
+                this.xspeed = 7 * cos(angle);
+                this.yspeed = 7 * sin(angle);
                 this.x = p.x - p.width / 2 - this.r;
             }
         }

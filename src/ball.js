@@ -60,13 +60,11 @@ class Ball {
       this.x - this.r < p.x + p.width / 2
     ) {
       if (this.x > p.x) {
-        nm;
         let diff = this.y - (p.y - p.height / 2);
-        console.log(diff);
         let rad = radians(45);
         let angle = map(diff, 0, p.height, -rad, rad);
-        this.xspeed = 5 * cos(angle);
-        this.yspeed = 5 * sin(angle);
+        this.xspeed = 5 * cos(angle) * this.acc;
+        this.yspeed = 5 * sin(angle) * this.acc;
         this.x = p.x + p.width / 2 + this.r;
         this.accelerate();
       }

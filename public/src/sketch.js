@@ -2,6 +2,11 @@ let leftscore = 0;
 let rightscore = 0;
 
 function setup() {
+  const socket = io.connect("http://localhost:3000");
+  socket.on("news", data => {
+    console.log(data);
+    socket.emit("my other event", { my: "data" });
+  });
   createCanvas(600, 400);
   ball = new Ball();
   left = new Box(true);

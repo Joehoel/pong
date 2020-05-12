@@ -1,0 +1,27 @@
+{
+  "name": "pong",
+  "version": "1.0.0",
+  "description": "Multiplayer pong game",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joehoel/pong.git"
+  },
+  "keywords": [
+    "Pong",
+    "Multiplayer"
+  ],
+  "author": "Joël Kuijper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joehoel/pong/issues"
+  },
+  "homepage": "https://github.com/Joehoel/pong#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}

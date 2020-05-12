@@ -10,8 +10,8 @@ server.listen(3000, () => {
 app.use(express.static("public"));
 
 io.on("connection", socket => {
-  socket.emit("news", { hello: "world" });
-  socket.on("my other event", data => {
-    console.log(data);
+  socket.emit("user", "user connected");
+  socket.on("user", () => {
+    console.log("user connected");
   });
 });

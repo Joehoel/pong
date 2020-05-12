@@ -14,4 +14,8 @@ io.on("connection", socket => {
   socket.on("user", () => {
     console.log("user connected");
   });
+
+  socket.on("move", data => {
+    io.emit("move", data);
+  });
 });

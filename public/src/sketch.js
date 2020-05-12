@@ -1,12 +1,14 @@
+const socket = io.connect("http://localhost:3000");
+
+socket.on("user", data => {
+  console.log(data);
+  socket.emit("user", "user connected");
+});
+
 let leftscore = 0;
 let rightscore = 0;
 
 function setup() {
-  const socket = io.connect("http://localhost:3000");
-  socket.on("user", data => {
-    console.log(data);
-    socket.emit("user", "user connected");
-  });
   createCanvas(600, 400);
   ball = new Ball();
   left = new Box(true);
@@ -40,8 +42,9 @@ function draw() {
 
   fill(255);
   textSize(32);
-  text(leftscore, 32 + width / 3, 40);
-  text(rightscore, width - 48 - width / 3, 40);
+  textAlign(CENTER);
+  text(leftscore, width / 2 - 80, 40);
+  text(rightscore, width / 2 + 80, 40);
   stroke(255);
   strokeCap(SQUARE);
   strokeWeight(6);
@@ -53,15 +56,24 @@ function draw() {
     y2 += 40;
   }
 
+  // Left paddle
+  socket.on("move", data => {
+    left.move(data);
+  });
+
   if (keyIsDown(65)) {
-    left.move(-10);
-  } else if (!keyIsDown(65)) {
-    left.move(0);
+    socket.emit("move", -10);
+    // left.move(-10);
+  } else if (!keyIsDown(65) && !keyIsDown(90)) {
+    socket.emit("move", 0);
+    // left.move(0);
   }
   if (keyIsDown(90)) {
-    left.move(10);
+    socket.emit("move", 10);
+    // left.move(10);
   }
 
+  // Right paddle
   if (keyIsDown(75)) {
     right.move(-10);
   } else if (!keyIsDown(75)) {

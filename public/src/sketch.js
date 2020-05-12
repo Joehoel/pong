@@ -1,8 +1,7 @@
 const socket = io.connect("http://localhost:3000");
 
-socket.on("user", data => {
-  console.log(data);
-  socket.emit("user", "user connected");
+socket.on("message", message => {
+  console.log(message);
 });
 
 let leftscore = 0;
@@ -61,6 +60,7 @@ function draw() {
     left.move(data);
   });
 
+  // User pressed "A"
   if (keyIsDown(65)) {
     socket.emit("move", -10);
     // left.move(-10);
@@ -68,18 +68,22 @@ function draw() {
     socket.emit("move", 0);
     // left.move(0);
   }
+  // User pressed "Z"
   if (keyIsDown(90)) {
     socket.emit("move", 10);
     // left.move(10);
   }
 
   // Right paddle
+
+  // User pressed "K"
   if (keyIsDown(75)) {
     right.move(-10);
-  } else if (!keyIsDown(75)) {
+  } else if (!keyIsDown(75) && !keyIsDown(77)) {
     right.move(0);
   }
 
+  // User pressed "M"
   if (keyIsDown(77)) {
     right.move(10);
   }

@@ -3,19 +3,18 @@ const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
-server.listen(3000, () => {
-  console.log("Server listening on port 3000");
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+  console.log(`Server running at http//localhost:${PORT}`);
 });
 
 app.use(express.static("public"));
 
 io.on("connection", socket => {
-  socket.emit("user", "user connected");
-  socket.on("user", () => {
-    console.log("user connected");
-  });
+  socket.broadcast.emit("message", "A user connected");
 
-  socket.on("move", data => {
-    io.emit("move", data);
+  socket.on("move", direction => {
+    io.emit("move", direction);
   });
 });

@@ -11,10 +11,32 @@ server.listen(PORT, () => {
 
 app.use(express.static("public"));
 
-io.on("connection", socket => {
-  socket.broadcast.emit("message", "A user connected");
+const players = [];
 
-  socket.on("move", direction => {
-    io.emit("move", direction);
+io.on("connection", socket => {
+  const player = {
+    id: socket.id,
+    side: players.length,
+  };
+  players.push(player);
+
+  console.log(players);
+
+  socket.emit("side", player.side);
+
+  socket.emit("message", `${player.id} connected`);
+
+  socket.on("move-left", direction => {
+    io.emit("move-left", direction);
+  });
+
+  socket.on("move-right", direction => {
+    io.emit("move-right", direction);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(players);
+    const idx = players.find(() => socket.id == player.id);
+    players.splice(idx, 1);
   });
 });

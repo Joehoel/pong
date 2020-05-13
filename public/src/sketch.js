@@ -13,7 +13,6 @@ function setup() {
   left = new Box(true);
   right = new Box(false);
 }
-
 function draw() {
   background(0);
   noStroke();
@@ -55,36 +54,51 @@ function draw() {
     y2 += 40;
   }
 
-  // Left paddle
-  socket.on("move", data => {
+  socket.on("move-left", data => {
     left.move(data);
   });
 
-  // User pressed "A"
-  if (keyIsDown(65)) {
-    socket.emit("move", -10);
-    // left.move(-10);
-  } else if (!keyIsDown(65) && !keyIsDown(90)) {
-    socket.emit("move", 0);
-    // left.move(0);
-  }
-  // User pressed "Z"
-  if (keyIsDown(90)) {
-    socket.emit("move", 10);
-    // left.move(10);
-  }
+  socket.on("move-right", data => {
+    right.move(data);
+  });
 
-  // Right paddle
+  let side;
+  socket.on("side", side => {
+    side = side;
+  });
 
-  // User pressed "K"
-  if (keyIsDown(75)) {
-    right.move(-10);
-  } else if (!keyIsDown(75) && !keyIsDown(77)) {
-    right.move(0);
-  }
+  if (side == 0) {
+    // Left paddle
 
-  // User pressed "M"
-  if (keyIsDown(77)) {
-    right.move(10);
+    // User pressed "A"
+    if (keyIsDown(65)) {
+      socket.emit("move-left", -10);
+      // left.move(-10);
+    } else if (!keyIsDown(65) && !keyIsDown(90)) {
+      socket.emit("move-left", 0);
+      // left.move(0);
+    }
+
+    // User pressed "Z"
+    if (keyIsDown(90)) {
+      socket.emit("move-left", 10);
+      // left.move(10);
+    }
+  } else if (side == 1) {
+    // Right paddle
+
+    // User pressed "K"
+    if (keyIsDown(75)) {
+      socket.emit("move-right", -10);
+    } else if (!keyIsDown(75) && !keyIsDown(77)) {
+      // right.move(0);
+      socket.emit("move-right", 0);
+    }
+
+    // User pressed "M"
+    if (keyIsDown(77)) {
+      socket.emit("move-right", 10);
+      // right.move(10);
+    }
   }
 }
